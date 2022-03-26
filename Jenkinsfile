@@ -17,8 +17,8 @@ pipeline {
     }
 
 
-    /*stages {
-        stage('tf Clone') {
+    stages {
+        /*stage('tf Clone') {
             steps {
                  script{
                         dir("terraform")
