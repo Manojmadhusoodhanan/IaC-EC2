@@ -32,7 +32,7 @@ pipeline {
         stage('tf Plan') {
             when {
                 not {
-                    equals expected: true, actual: params.plan
+                    equals expected: false, actual: params.plan
                 }
             }
             
