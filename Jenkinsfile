@@ -6,7 +6,7 @@ pipeline {
         booleanParam(name: 'autoApprove', defaultValue: false, description: 'Automatically run apply after generating plan?')
         booleanParam(name: 'destroy', defaultValue: false, description: 'Destroy your infrastructure?')
         booleanParam(name: 'plan', defaultValue: true, description: 'Run terraform plan')
-        booleanParam(name: 'apply', defaultValue: false, description: 'This will apply your chnages!' 
+        booleanParam(name: 'apply', defaultValue: false, description: 'This will apply your chnages!') 
 
     }
 
