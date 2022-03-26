@@ -17,7 +17,7 @@ pipeline {
     }
 
 
-    stages {
+    /*stages {
         stage('tf Clone') {
             steps {
                  script{
@@ -27,7 +27,7 @@ pipeline {
                         }
                     }
                 }
-            }
+            }*/
 
         stage('tf Plan') {
             when {
