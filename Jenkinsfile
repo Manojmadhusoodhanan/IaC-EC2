@@ -51,7 +51,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'terraform destroy ec2-infra.out'
+                sh 'terraform destroy'
             }
         }
         
