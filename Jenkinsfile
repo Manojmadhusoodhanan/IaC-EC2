@@ -1,14 +1,14 @@
 pipeline {
     agent any
 
-    parameters {
+    /*parameters {
         string(name: 'environment', defaultValue: 'tfenv', description: 'Workspace/environment file to use for deployment')
         booleanParam(name: 'autoApprove', description: 'Automatically run apply after generating plan?')
         booleanParam(name: 'destroy', description: 'Destroy your infrastructure?')
         booleanParam(name: 'plan', description: 'Run terraform plan')
         booleanParam(name: 'apply', description: 'This will apply your chnages!') 
 
-    }
+    }*/
 
 
      environment {
@@ -19,25 +19,15 @@ pipeline {
 
 
     stages {
-        /*stage('tf Clone') {
-            steps {
-                 script{
-                        dir("terraform")
-                        {
-                            git "https://github.com/sony7760/AWS.git"
-                        }
-                    }
-                }
-            }*/
 
-        stage('tf Plan') {
-            if ( plan == 'true' ) {
-                println "plan is true"
-            } else {
-                println "plan is false. skipping stage"
-            }
-            
+        stage('init') {
+            steps {
+                script {
+                    tf init
+                }
+            }         
         }
+        
         stage('tf Approval') {
            when {
              expression   {
