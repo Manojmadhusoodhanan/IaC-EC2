@@ -23,7 +23,7 @@ pipeline {
         stage('init') {
             steps {
                 script {
-                    sh "tf init"
+                    sh "terraform  init"
                 }
             }         
         }
@@ -31,7 +31,7 @@ pipeline {
         stage('second') {
             steps {
                 script {
-                    sh "tf plan"
+                    sh "terraform  plan"
                 }
             }
         }
