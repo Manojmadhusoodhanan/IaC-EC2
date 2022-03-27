@@ -28,10 +28,18 @@ pipeline {
             }         
         }
         
-        stage('second') {
+        stage('plan') {
             steps {
                 script {
-                    sh "terraform  plan"
+                    sh "terraform  plan -out ec2-infra.out"
+                }
+            }
+        }
+        
+        stage('apply') {
+            steps {
+                script {
+                    sh "terraform  apply ec2-infra.out"
                 }
             }
         }
@@ -52,7 +60,7 @@ pipeline {
            }
        }
 
-        stage('tf Apply') {
+        stage('apply') {
             when {
                 expression {
                     params.apply == 'true'
