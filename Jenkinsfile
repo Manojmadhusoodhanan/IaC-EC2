@@ -31,19 +31,15 @@ pipeline {
             }*/
 
         stage('tf Plan') {
-            when {
-                expression {
-                    params.plan == 'true'
-                }
-            }
-            
-            steps {
+            if ( plan == 'true' ) {
                 sh 'terraform init -input=false'
                 sh 'terraform workspace select ${environment} || terraform workspace new ${environment}'
-
-                sh "terraform plan -out tfplan "
+                sh 'terraform plan -out tfplan'
                 sh 'terraform show -no-color tfplan > tfplan.txt'
+            } else {
+                println "plan is false. skipping stage"
             }
+            
         }
         stage('tf Approval') {
            when {
