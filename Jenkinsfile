@@ -37,10 +37,13 @@ pipeline {
         }
         
         stage('apply') {
-            steps {
-                script {
-                    sh "terraform  apply ec2-infra.out"
+            when {
+                expression {
+                    params.apply == true
                 }
+            }
+            steps {
+                sh 'terraform  apply ec2-infra.out'
             }
         }
         
@@ -54,46 +57,6 @@ pipeline {
                 sh 'terraform destroy --auto-approve'
             }
         }
-        
-        /*stage('tf Approval') {
-           when {
-             expression   {
-                   params.autoApprove == 'true'
-               }
-           }    
-
-           steps {
-               script {
-                    def plan = readFile 'tfplan.txt'
-                    input message: "Do you want to apply the plan?",
-                    parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
-               }
-           }
-       }
-
-        stage('apply') {
-            when {
-                expression {
-                    params.apply == 'true'
-                }
-            }
-            
-            steps {
-                sh "terraform apply -input=false tfplan"
-            }
-        }
-        
-        stage('tf Destroy') {
-            when {
-                expression {
-                    params.destroy == 'true'
-                }
-            }
-        
-        steps {
-           sh "terraform destroy --auto-approve"
-        }
-    }*/
 
   }
 }
