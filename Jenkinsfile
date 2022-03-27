@@ -5,7 +5,7 @@ pipeline {
         string(name: 'environment', defaultValue: 'tfenv', description: 'Workspace/environment file to use for deployment')
         booleanParam(name: 'autoApprove', defaultValue: false, description: 'Automatically run apply after generating plan?')
         booleanParam(name: 'destroy', defaultValue: false, description: 'Destroy your infrastructure?')
-        booleanParam(name: 'plan', defaultValue: true, description: 'Run terraform plan')
+        booleanParam(name: 'plan', defaultValue: false, description: 'Run terraform plan')
         booleanParam(name: 'apply', defaultValue: false, description: 'This will apply your chnages!') 
 
     }
@@ -32,8 +32,8 @@ pipeline {
 
         stage('tf Plan') {
             when {
-                not {
-                    equals expected: false, actual: params.plan
+                expression {
+                    params.plan == 'true'
                 }
             }
             
@@ -47,12 +47,9 @@ pipeline {
         }
         stage('tf Approval') {
            when {
-               not {
-                   equals expected: false, actual: params.autoApprove
+             expression   {
+                   params.autoApprove == 'true'
                }
-               not {
-                    equals expected: false, actual: params.destroy
-                }
            }    
 
            steps {
@@ -66,8 +63,8 @@ pipeline {
 
         stage('tf Apply') {
             when {
-                not {
-                    equals expected: false, actual: params.apply
+                expression {
+                    params.apply == 'true'
                 }
             }
             
@@ -78,7 +75,9 @@ pipeline {
         
         stage('tf Destroy') {
             when {
-                equals expected: false, actual: params.destroy
+                expression {
+                    params.destroy == 'true'
+                }
             }
         
         steps {
