@@ -32,10 +32,11 @@ pipeline {
 
         stage('tf Plan') {
             if ( plan == 'true' ) {
-                sh 'terraform init -input=false'
+                /*sh 'terraform init -input=false'
                 sh 'terraform workspace select ${environment} || terraform workspace new ${environment}'
                 sh 'terraform plan -out tfplan'
-                sh 'terraform show -no-color tfplan > tfplan.txt'
+                sh 'terraform show -no-color tfplan > tfplan.txt' */
+                println "plan is true"
             } else {
                 println "plan is false. skipping stage"
             }
