@@ -3,10 +3,10 @@ pipeline {
 
     parameters {
         string(name: 'environment', defaultValue: 'tfenv', description: 'Workspace/environment file to use for deployment')
-        choiceParam(name: 'autoApprove', defaultValue: 'no', description: 'Automatically run apply after generating plan?')
-        choiceParam(name: 'destroy', defaultValue: 'no', description: 'Destroy your infrastructure?')
-        choiceParam(name: 'plan', defaultValue: 'yes', description: 'Run terraform plan')
-        choiceParam(name: 'apply', defaultValue: 'no', description: 'This will apply your chnages!') 
+        choice(name: 'autoApprove', defaultValue: 'no', description: 'Automatically run apply after generating plan?')
+        choice(name: 'destroy', defaultValue: 'no', description: 'Destroy your infrastructure?')
+        choice(name: 'plan', defaultValue: 'yes', description: 'Run terraform plan')
+        choice(name: 'apply', defaultValue: 'no', description: 'This will apply your chnages!') 
 
     }
 
