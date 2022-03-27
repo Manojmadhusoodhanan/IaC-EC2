@@ -48,10 +48,10 @@ pipeline {
         stage('tf Approval') {
            when {
                not {
-                   equals expected: true, actual: params.autoApprove
+                   equals expected: false, actual: params.autoApprove
                }
                not {
-                    equals expected: true, actual: params.destroy
+                    equals expected: false, actual: params.destroy
                 }
            }    
 
@@ -67,7 +67,7 @@ pipeline {
         stage('tf Apply') {
             when {
                 not {
-                    equals expected: true, actual: params.apply
+                    equals expected: false, actual: params.apply
                 }
             }
             
@@ -78,7 +78,7 @@ pipeline {
         
         stage('tf Destroy') {
             when {
-                equals expected: true, actual: params.destroy
+                equals expected: false, actual: params.destroy
             }
         
         steps {
