@@ -46,9 +46,11 @@ pipeline {
         
         stage('destroy') {
             if(env.destroy.toBoolean()) {
-                echo "Yes equal - Destroyig infra"
-            } else {
-                echo "Not equal - Can not be destroy"
+                steps {
+                    script {
+                        sh "terraform destroy ec2-infra.out"
+                    }
+                }
             }
         }
         
