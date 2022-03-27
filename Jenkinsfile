@@ -3,10 +3,10 @@ pipeline {
 
     parameters {
         string(name: 'environment', defaultValue: 'tfenv', description: 'Workspace/environment file to use for deployment')
-        choice(name: 'autoApprove', description: 'Automatically run apply after generating plan?')
-        choice(name: 'destroy', description: 'Destroy your infrastructure?')
-        choice(name: 'plan', description: 'Run terraform plan')
-        choice(name: 'apply', description: 'This will apply your chnages!') 
+        booleanParam(name: 'autoApprove', description: 'Automatically run apply after generating plan?')
+        booleanParam(name: 'destroy', description: 'Destroy your infrastructure?')
+        booleanParam(name: 'plan', description: 'Run terraform plan')
+        booleanParam(name: 'apply', description: 'This will apply your chnages!') 
 
     }
 
@@ -47,7 +47,7 @@ pipeline {
         stage('destroy') {
             when {
                 expression {
-                    params.destroy == yes || params.destroy == true
+                    params.destroy == true
                 }
             }
             steps {
