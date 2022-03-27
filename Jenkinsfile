@@ -28,6 +28,14 @@ pipeline {
             }         
         }
         
+        stage('second') {
+            steps {
+                script {
+                    tf plan
+                }
+            }
+        }
+        
         /*stage('tf Approval') {
            when {
              expression   {
