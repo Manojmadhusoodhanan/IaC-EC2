@@ -28,7 +28,7 @@ pipeline {
             }         
         }
         
-        stage('tf Approval') {
+        /*stage('tf Approval') {
            when {
              expression   {
                    params.autoApprove == 'true'
@@ -68,5 +68,5 @@ pipeline {
         }
     }
 
-  }
+  }*/
 }
