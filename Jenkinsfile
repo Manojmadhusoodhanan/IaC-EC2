@@ -23,7 +23,7 @@ pipeline {
         stage('init') {
             steps {
                 script {
-                    tf init
+                    sh "tf init"
                 }
             }         
         }
@@ -31,7 +31,7 @@ pipeline {
         stage('second') {
             steps {
                 script {
-                    tf plan
+                    sh "tf plan"
                 }
             }
         }
