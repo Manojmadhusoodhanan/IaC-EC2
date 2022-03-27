@@ -1,14 +1,14 @@
 pipeline {
     agent any
 
-    /*parameters {
+    parameters {
         string(name: 'environment', defaultValue: 'tfenv', description: 'Workspace/environment file to use for deployment')
         booleanParam(name: 'autoApprove', description: 'Automatically run apply after generating plan?')
         booleanParam(name: 'destroy', description: 'Destroy your infrastructure?')
         booleanParam(name: 'plan', description: 'Run terraform plan')
         booleanParam(name: 'apply', description: 'This will apply your chnages!') 
 
-    }*/
+    }
 
 
      environment {
@@ -41,6 +41,14 @@ pipeline {
                 script {
                     sh "terraform  apply ec2-infra.out"
                 }
+            }
+        }
+        
+        stage('destroy') {
+            if(env.destroy.toBoolean()) {
+                echo "Yes equal - Destroyig infra"
+            } else {
+                echo "Not equal - Can not be destroy"
             }
         }
         
