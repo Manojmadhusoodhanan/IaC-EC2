@@ -45,12 +45,13 @@ pipeline {
         }
         
         stage('destroy') {
-            if(env.destroy.toBoolean()) {
-                steps {
-                    script {
-                        sh "terraform destroy ec2-infra.out"
-                    }
+            when {
+                expression {
+                    params.destroy == yes || params.destroy == true
                 }
+            }
+            steps {
+                sh 'terraform destroy ec2-infra.out'
             }
         }
         
