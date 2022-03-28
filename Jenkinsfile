@@ -23,7 +23,7 @@ pipeline {
         stage('init') {
             steps {
                 script {
-                    sh "terraform  init --auto-approve"
+                    sh "terraform  init -input=false"
                 }
             }         
         }
