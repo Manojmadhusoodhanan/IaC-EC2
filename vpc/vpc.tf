@@ -1,5 +1,5 @@
 resource "aws_vpc" "tfvpc" {
-  cidr_block           = "10.0.0.0/16"
+  cidr_block           = var.cidr
   enable_dns_hostnames = true
   enable_dns_support   = true
   tags   = {
@@ -8,17 +8,17 @@ resource "aws_vpc" "tfvpc" {
 }
 
 resource "aws_subnet" "tfpublic_subnet" {
-  count                   = length(var.cidr_block)
+  count                   = length(var.public_cidr)
   vpc_id                  = aws_vpc.tfvpc.id
-  cidr_block              = ["10.0.1.0/24", "10.0.2.0/24"]
+  cidr_block              = var.public_cidr
   map_public_ip_on_launch = true
   availability_zone       = ["us-west-2a", "us-west-2b", "us-west-2c", "us-west-2d"]
 }
 
 resource "aws_subnet" "tfprivate_subnet" {
-  count                   = length(var.cidr_block)
+  count                   = length(var.private_cidr)
   vpc_id                  = aws_vpc.tfvpc.id
-  cidr_block              = ["10.0.3.0/24", "10.0.4.0/24"]
+  cidr_block              = var.private_cidr
   map_private_ip_on_launch = true
   availability_zone       = ["us-west-2a", "us-west-2b", "us-west-2c", "us-west-2d"]
 }
