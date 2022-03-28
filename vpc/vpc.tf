@@ -1,3 +1,8 @@
+provider "aws" {
+  profile = "default"
+  region  = "us-west-2"
+}
+
 resource "aws_vpc" "tfvpc" {
   cidr_block           = var.cidr
   enable_dns_hostnames = true
