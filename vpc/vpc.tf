@@ -3,7 +3,7 @@ resource "aws_vpc" "tfvpc" {
   enable_dns_hostnames = true
   enable_dns_support   = true
   tags   = {
-    Name = tfvpc
+    Name = "tfvpc"
   }
 }
 
@@ -26,21 +26,21 @@ resource "aws_subnet" "tfprivate_subnet" {
 resource "aws_igw" "tfigw" {
   vpc_id = aws_vpc.tfvpc.id
   tags   = {
-    Name = tfigw
+    Name = "tfigw"
   }
 }
 
 resource "aws_rt" "tfpublic_rt" {
   vpc_id = aws_vpc.tfvpc.id
   tags   = {
-    Name = tfpublic_rt
+    Name = "tfpublic_rt"
   }
 }
 
 resource "aws_rt" "tfprivate_rt" {
   vpc_id = aws_vpc.tfvpc.id
   tags   = {
-    Name = tfprivate_rt
+    Name = "tfprivate_rt"
   }
 }
 
