@@ -18,14 +18,14 @@ resource "aws_subnet" "tfpublic_subnet" {
   vpc_id                  = aws_vpc.tfvpc.id
   cidr_block              = var.public_cidr[count.index]
   map_public_ip_on_launch = true
-  availability_zone       = var.az
+  availability_zone       = ["us-west-2a", "us-west-2b", "us-west-2c", "us-west-2d"][count.index]
 }
 
 resource "aws_subnet" "tfprivate_subnet" {
   count                    = length(var.private_cidr)
   vpc_id                   = aws_vpc.tfvpc.id
   cidr_block               = var.private_cidr[count.index]
-  availability_zone        = var.az
+  availability_zone        = ["us-west-2a", "us-west-2b", "us-west-2c", "us-west-2d"][count.index]
 }
 
 resource "aws_internet_gateway" "tfigw" {
