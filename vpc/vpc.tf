@@ -10,7 +10,7 @@ resource "aws_vpc" "tfvpc" {
 resource "aws_subnet" "tfpublic_subnet" {
   count                   = length(var.public_cidr)
   vpc_id                  = aws_vpc.tfvpc.id
-  cidr_block              = var.public_cidr
+  cidr_block              = var.public_cidr[count.index]
   map_public_ip_on_launch = true
   availability_zone       = var.az
 }
@@ -18,7 +18,7 @@ resource "aws_subnet" "tfpublic_subnet" {
 resource "aws_subnet" "tfprivate_subnet" {
   count                    = length(var.private_cidr)
   vpc_id                   = aws_vpc.tfvpc.id
-  cidr_block               = var.private_cidr
+  cidr_block               = var.private_cidr[count.index]
   map_private_ip_on_launch = true
   availability_zone        = var.az
 }
@@ -45,4 +45,6 @@ resource "aws_route" "tfpublic_route" {
 
 resource "aws_rt_assoc" "tfpublic_assoc" {
   count          = length(var.public_cidrs)
+  subnet_id      = aws_subnet.tfpublic_subnet.*.id[count.index]
+  route_table_id = aws_rt.tfpublic_rt.id
 }
