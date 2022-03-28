@@ -2,6 +2,7 @@ resource "aws_vpc" "tfvpc" {
   cidr_block           = var.cidr
   enable_dns_hostnames = true
   enable_dns_support   = true
+  
   tags   = {
     Name = "tfvpc"
   }
@@ -24,13 +25,32 @@ resource "aws_subnet" "tfprivate_subnet" {
 
 resource "aws_internet_gateway" "tfigw" {
   vpc_id = aws_vpc.tfvpc.id
+  
   tags   = {
     Name = "tfigw"
   }
 }
 
+resource "aws_eip" "tfeip" {
+  vpc    = true
+  
+  tags   = {
+    Name = "tfeip"
+  }
+}
+
+resource "aws_nat_gateway" "tfnat" {
+  allocation_id = "${aws_eip.tfeip.id}"
+  subnet_id     = "${aws_subnet.tfpublic_subnet.0.id}"
+  
+  tags = {
+    Name = "tfnat"
+  }
+}
+
 resource "aws_route_table" "tfpublic_rt" {
   vpc_id = aws_vpc.tfvpc.id
+  
   tags   = {
     Name = "tfpublic_rt"
   }
@@ -38,6 +58,7 @@ resource "aws_route_table" "tfpublic_rt" {
 
 resource "aws_route_table" "tfprivate_rt" {
   vpc_id = aws_vpc.tfvpc.id
+  
   tags   = {
     Name = "tfprivate_rt"
   }
@@ -52,6 +73,7 @@ resource "aws_route" "tfpublic_route" {
 resource "aws_route" "tfprivate_route" {
   route_table_id         = aws_route_table.tfprivate_rt.id
   destination_cidr_block = var.dst_cidr
+  nat_gateway_id         = aws_nat_gateway.tfnat.id
 }
 
 resource "aws_route_table_association" "tfpublic_assoc" {
