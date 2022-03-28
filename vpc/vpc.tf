@@ -19,7 +19,6 @@ resource "aws_subnet" "tfprivate_subnet" {
   count                    = length(var.private_cidr)
   vpc_id                   = aws_vpc.tfvpc.id
   cidr_block               = var.private_cidr[count.index]
-  map_private_ip_on_launch = true
   availability_zone        = var.az
 }
 
