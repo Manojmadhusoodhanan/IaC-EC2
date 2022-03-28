@@ -56,13 +56,13 @@ resource "aws_route" "tfprivate_route" {
 }
 
 resource "aws_rt_assoc" "tfpublic_assoc" {
-  count          = length(var.public_cidrs)
+  count          = length(var.public_cidr)
   subnet_id      = aws_subnet.tfpublic_subnet.*.id[count.index]
   route_table_id = aws_rt.tfpublic_rt.id
 }
 
 resource "aws_rt_assoc" "tfprivate_assoc" {
-  count          = length(var.private_cidrs)
+  count          = length(var.private_cidr)
   subnet_id      = aws_subnet.tfprivate_subnet.*.id[count.index]
   route_table_id = aws_rt.tfprivate_rt.id
 }
