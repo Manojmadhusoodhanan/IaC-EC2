@@ -39,7 +39,7 @@ resource "aws_rt" "tfpublic_rt" {
 
 resource "aws_route" "tfpublic_route" {
   route_table_id         = aws_rt.tfpublic_rt.id
-  destination_cidr_block = "0.0.0.0/0"
+  destination_cidr_block = var.dst_cidr
   gateway_id             = aws_igw.tfigw.id
 }
 
