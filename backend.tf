@@ -3,5 +3,6 @@ terraform {
     bucket = "tf-backend-sony"
     key    = "remote.tfstate"
     region = "us-west-2"
+    encrypt = "true"
   }
 }
