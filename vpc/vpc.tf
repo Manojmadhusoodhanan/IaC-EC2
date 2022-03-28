@@ -22,7 +22,7 @@ resource "aws_subnet" "tfprivate_subnet" {
   availability_zone        = var.az
 }
 
-resource "aws_igw" "tfigw" {
+resource "aws_internet_gateway" "tfigw" {
   vpc_id = aws_vpc.tfvpc.id
   tags   = {
     Name = "tfigw"
