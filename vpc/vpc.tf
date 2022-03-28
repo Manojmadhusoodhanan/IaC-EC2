@@ -12,15 +12,15 @@ resource "aws_subnet" "tfpublic_subnet" {
   vpc_id                  = aws_vpc.tfvpc.id
   cidr_block              = var.public_cidr
   map_public_ip_on_launch = true
-  availability_zone       = ["us-west-2a", "us-west-2b", "us-west-2c", "us-west-2d"]
+  availability_zone       = var.az
 }
 
 resource "aws_subnet" "tfprivate_subnet" {
-  count                   = length(var.private_cidr)
-  vpc_id                  = aws_vpc.tfvpc.id
-  cidr_block              = var.private_cidr
+  count                    = length(var.private_cidr)
+  vpc_id                   = aws_vpc.tfvpc.id
+  cidr_block               = var.private_cidr
   map_private_ip_on_launch = true
-  availability_zone       = ["us-west-2a", "us-west-2b", "us-west-2c", "us-west-2d"]
+  availability_zone        = var.az
 }
 
 resource "aws_igw" "tfigw" {
