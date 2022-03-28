@@ -3,9 +3,7 @@ pipeline {
 
     parameters {
         string(name: 'environment', defaultValue: 'tfenv', description: 'Workspace/environment file to use for deployment')
-        booleanParam(name: 'autoApprove', description: 'Automatically run apply after generating plan?')
         booleanParam(name: 'destroy', description: 'Destroy your infrastructure?')
-        booleanParam(name: 'plan', description: 'Run terraform plan')
         booleanParam(name: 'apply', description: 'This will apply your chnages!') 
 
     }
@@ -26,6 +24,14 @@ pipeline {
                     sh "terraform  init -force-copy"
                 }
             }         
+        }
+        
+        stage('validate') {
+            steps {
+                script {
+                    sh "terraform validate"
+                }
+            }
         }
         
         stage('plan') {
