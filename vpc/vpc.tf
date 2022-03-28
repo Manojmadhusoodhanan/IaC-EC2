@@ -29,14 +29,14 @@ resource "aws_internet_gateway" "tfigw" {
   }
 }
 
-resource "aws_rt" "tfpublic_rt" {
+resource "aws_route_table" "tfpublic_rt" {
   vpc_id = aws_vpc.tfvpc.id
   tags   = {
     Name = "tfpublic_rt"
   }
 }
 
-resource "aws_rt" "tfprivate_rt" {
+resource "aws_route_table" "tfprivate_rt" {
   vpc_id = aws_vpc.tfvpc.id
   tags   = {
     Name = "tfprivate_rt"
@@ -54,13 +54,13 @@ resource "aws_route" "tfprivate_route" {
   destination_cidr_block = var.dst_cidr
 }
 
-resource "aws_rt_assoc" "tfpublic_assoc" {
+resource "aws_route_table_association" "tfpublic_assoc" {
   count          = length(var.public_cidr)
   subnet_id      = aws_subnet.tfpublic_subnet.*.id[count.index]
   route_table_id = aws_rt.tfpublic_rt.id
 }
 
-resource "aws_rt_assoc" "tfprivate_assoc" {
+resource "aws_route_table_association" "tfprivate_assoc" {
   count          = length(var.private_cidr)
   subnet_id      = aws_subnet.tfprivate_subnet.*.id[count.index]
   route_table_id = aws_rt.tfprivate_rt.id
