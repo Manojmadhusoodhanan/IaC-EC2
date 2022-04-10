@@ -17,6 +17,11 @@ provider "aws" {
 resource "aws_instance" "app_server" {
   ami           = "ami-0b28dfc7adc325ef4"
   instance_type = "t2.micro"
+  
+  provisioner "file" {
+    content = "Hello World"
+    destination = "/tmp/helloworld.txt"
+  }
 
   tags = {
     Name = "app_server1"
