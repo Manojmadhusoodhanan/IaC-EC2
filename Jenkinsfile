@@ -22,6 +22,7 @@ pipeline {
             steps {
                 script {
                     sh "whoami"
+                    sh "pwd"
                 }
             }
         }
