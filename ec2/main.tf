@@ -22,6 +22,12 @@ resource "aws_instance" "app_server" {
   provisioner "file" {
     content = "Hello World"
     destination = "/tmp/helloworld.txt"
+    
+    connection {
+      type = "ssh"
+      user = "ec2-user"
+      private_key = "/tmp/sony_aws.pem"
+    }
   }
 
   tags = {
