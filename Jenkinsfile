@@ -21,7 +21,7 @@ pipeline {
         stage('ssh') {
             steps {
                 script {
-                    sh "echo $AWS_SSH_KEY > sony_aws.pem"
+                    sh "whoami"
                 }
             }
         }
