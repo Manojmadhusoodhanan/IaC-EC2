@@ -58,6 +58,7 @@ pipeline {
                 }
             }
             steps {
+                sh 'ls -al'
                 sh 'terraform  apply ec2-infra.out'
             }
         }
