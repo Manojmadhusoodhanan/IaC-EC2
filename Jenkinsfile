@@ -12,11 +12,19 @@ pipeline {
      environment {
         AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY')
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_KEY')
+        AWS_SSH_KEY = credentials('AWS_SSH_KEY')
         /* TF_LOG = 'DEBUG' */
     }
 
 
     stages {
+        stage('ssh') {
+            steps {
+                script {
+                    sh "echo $AWS_SSH_KEY"
+                }
+            }
+        }
 
         stage('init') {
             steps {
