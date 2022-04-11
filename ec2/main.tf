@@ -20,7 +20,7 @@ resource "aws_instance" "app_server" {
   key_name = "sony_aws"
   
   provisioner "local-exec" {
-    command = "ip addr show"
+    command = "echo ${self.private_ip} >> /tmp/private_ips.txt"
     
     connection {
       type = "ssh"
