@@ -21,6 +21,8 @@ resource "aws_instance" "app_server" {
   
   provisioner "local-exec" {
     command = "echo ${self.private_ip} >> /tmp/private_ips.txt; cat /tmp/private_ips.txt"
+    command = "mkdir -p /tmp/test-tf"
+    command = "cp /tmp/private_ips.txt /tmp/test-tf; ls -l /tmp/test-tf"
   }
   
   provisioner "file" {
