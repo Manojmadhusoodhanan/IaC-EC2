@@ -19,6 +19,17 @@ resource "aws_instance" "app_server" {
   instance_type = "t2.micro"
   key_name = "sony_aws"
   
+  provisioner "local-exec" {
+    command = "ip addr show"
+    
+    connection {
+      type = "ssh"
+      user = "ec2-user"
+      private_key = file("./sony_aws.pem")
+      host = self.public_ip
+    }
+  }
+  
   provisioner "file" {
     content = "Hello World"
     destination = "/tmp/helloworld.txt"
@@ -28,7 +39,7 @@ resource "aws_instance" "app_server" {
       user = "ec2-user"
       private_key = file("./sony_aws.pem")
       host = self.public_ip
-    }
+    }    
   }
 
   tags = {
