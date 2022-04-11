@@ -17,6 +17,8 @@ provider "aws" {
 resource "aws_instance" "app_server" {
   ami           = "ami-0b28dfc7adc325ef4"
   instance_type = "t2.micro"
+  count = 2
+  timeout = "1m"
   key_name = "sony_aws"
   
   provisioner "local-exec" {
