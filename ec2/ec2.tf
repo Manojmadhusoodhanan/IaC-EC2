@@ -33,7 +33,7 @@ resource "aws_instance" "app_server" {
       user = "ec2-user"
       private_key = file("./sony_aws.pem")
       host = self.public_ip
-      timeout = "1m"
+      timeout = "5m"
     }    
   }
 
