@@ -18,7 +18,6 @@ resource "aws_instance" "app_server" {
   ami           = "ami-0b28dfc7adc325ef4"
   instance_type = "t2.micro"
   count = 2
-  timeout = "1m"
   key_name = "sony_aws"
   
   provisioner "local-exec" {
@@ -34,6 +33,7 @@ resource "aws_instance" "app_server" {
       user = "ec2-user"
       private_key = file("./sony_aws.pem")
       host = self.public_ip
+      timeout = "1m"
     }    
   }
 
