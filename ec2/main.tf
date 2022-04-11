@@ -26,7 +26,7 @@ resource "aws_instance" "app_server" {
     connection {
       type = "ssh"
       user = "ec2-user"
-      private_key = "./sony_aws.pem"
+      private_key = file("./sony_aws.pem")
       host = "aws_instance.app_server.private_ip"
     }
   }
