@@ -18,15 +18,6 @@ pipeline {
 
 
     stages {
-        stage('ssh') {
-            steps {
-                script {
-                    sh "whoami"
-                    sh "pwd"
-                }
-            }
-        }
-
         stage('init') {
             steps {
                 script {
