@@ -1,8 +1,8 @@
 terraform {
   backend "s3" {
-    bucket = "tf-backend-sony"
+    bucket = "tf-backend-ssunny3"
     key    = "remote.tfstate"
-    region = "us-west-2"
+    region = "ap-south-1"
     encrypt = "true"
   }
 }
