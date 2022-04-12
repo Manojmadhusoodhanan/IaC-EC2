@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     withCredentials([file(credentialsId: 'SSH_PRIVATE_KEY', variable: 'my-private-key')]) {
-                        sh "cp \$my-private-key /var/lib/jenkins/workspace/IaC/AWS/sony_aws.pem"
+                        sh "cp $my-private-key /var/lib/jenkins/workspace/IaC/AWS/sony_aws.pem"
                     }
                 }
             }
