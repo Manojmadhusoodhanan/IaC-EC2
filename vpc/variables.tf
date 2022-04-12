@@ -17,3 +17,8 @@ variable "dst_cidr" {
   type = string
   default = "0.0.0.0/0"
 }
+
+variable "region" {
+  type = string
+  default = "ap-south-1"
+}
