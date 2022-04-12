@@ -15,7 +15,7 @@ provider "aws" {
 }
 
 resource "aws_instance" "app_server" {
-  ami           = "ami-0b28dfc7adc325ef4"
+  ami           = var.ami
   instance_type = "t2.micro"
   count = 1
   key_name = "sony_aws"
