@@ -22,3 +22,18 @@ variable "region" {
   type = string
   default = "ap-south-1"
 }
+
+variable "az-1a" {
+  type = string
+  default = "ap-south-1a"
+}
+
+variable "az-1b" {
+  type = string
+  default = "ap-south-1b"
+}
+
+variable "az-1c" {
+  type = string
+  default = "ap-south-1c"
+}
