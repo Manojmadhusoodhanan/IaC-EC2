@@ -1,6 +1,6 @@
 provider "aws" {
   profile = "default"
-  region  = "us-west-2"
+  region  = var.region
 }
 
 resource "aws_vpc" "tfvpc" {
