@@ -12,12 +12,21 @@ pipeline {
      environment {
         AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY')
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_KEY')
-        AWS_SSH_KEY = credentials('AWS_SSH_KEY')
+        SSH_PRIVATE_KEY = credentials([file(credentialsId: 'SSH_PRIVATE_KEY')])
+        
         TF_LOG = 'DEBUG'
     }
 
 
     stages {
+        stage('key') {
+            steps {
+                script {
+                    sh "cp \$SSH_PRIVATE_KEY /var/lib/jenkins/workspace/IaC/AWS/sony_aws.pem"
+                }
+            }
+        }
+        
         stage('init') {
             steps {
                 script {
