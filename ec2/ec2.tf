@@ -16,6 +16,7 @@ provider "aws" {
 
 resource "aws_key_pair" "sony_aws" {
   public_key = file("./id_rsa.pub")
+  key_name = "sony_aws"
 }
 
 resource "aws_instance" "app_server" {
