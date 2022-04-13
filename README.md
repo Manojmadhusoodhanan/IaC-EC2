@@ -1,6 +1,8 @@
 # This doc is for talking all about Terraform.
 **Authors: Sony K Sunny, Manoj Madhusoodhanan**
 ## terraform init
+The command is used to initialize a working directory containing Terraform configuration files.
+
 Refer this [link](https://www.terraform.io/cli/commands/init)
 #### Questionaire:
 1. How to skip input(yes/no) while run _terraform init_ at CI/CD pipeline?
