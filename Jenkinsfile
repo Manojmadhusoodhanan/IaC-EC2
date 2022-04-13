@@ -13,7 +13,7 @@ pipeline {
         AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY')
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_KEY')
         
-        TF_LOG = 'DEBUG'
+        /*TF_LOG = 'DEBUG'*/
     }
 
 
@@ -39,7 +39,8 @@ pipeline {
         stage('validate') {
             steps {
                 script {
-                    sh "terraform validate"
+                    sh "terraform validate -json aws_validate.json"
+                    sh "cat aws_validate.json"
                 }
             }
         }
