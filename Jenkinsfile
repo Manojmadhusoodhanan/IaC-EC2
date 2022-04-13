@@ -24,6 +24,9 @@ pipeline {
                     withCredentials([file(credentialsId: 'SSH_PRIVATE_KEY', variable: 'privatekey')]) {
                         sh "cp -f \$privatekey /var/lib/jenkins/workspace/IaC/AWS/sony_aws.pem"
                     }
+                    withCredentials([file(credentialsId: 'SSH_PUBLIC_KEY', variable: 'publickey')]) {
+                        sh "cp -f \$publickey /var/lib/jenkins/workspace/IaC/AWS/sony_aws.pub"
+                    }
                 }
             }
         }
