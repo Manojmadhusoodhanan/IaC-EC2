@@ -1,5 +1,5 @@
 # This doc is for talking all about Terraform.
-
+**Authors: Sony K Sunny, Manoj Madhusoodhanan**
 ## terraform init
 Refere this [link](https://www.terraform.io/cli/commands/init)
 #### Additional use cases
@@ -16,7 +16,6 @@ Refer this [link](https://www.terraform.io/cli/commands/init#backend-initializat
 
 Ans: Yes. _terraform init_ does validate and configure the configuration’s backend if present.
 
-4. Which directory is 
 ## terraform validate
 
 ## terraform plan
