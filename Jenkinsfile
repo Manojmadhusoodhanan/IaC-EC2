@@ -39,8 +39,7 @@ pipeline {
         stage('validate') {
             steps {
                 script {
-                    sh "terraform validate -json aws_validate.json"
-                    sh "cat aws_validate.json"
+                    sh "terraform validate -json"
                 }
             }
         }
