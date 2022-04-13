@@ -35,7 +35,7 @@ resource "aws_instance" "app_server" {
     
     connection {
       type = "ssh"
-      user = "ec2-user"
+      user = var.user
       private_key = file("./sony_aws.pem")
       host = self.public_ip
       timeout = "5m"
