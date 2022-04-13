@@ -10,6 +10,7 @@ Ans: terraform init -force-copy
 2. How to perform _terraform init_ when you are using same configuration on same executor(static and ran for a different AWS account) for a new AWS account?
 
 Ans: terraform init -reconfigure
+
 Refer this [link](https://www.terraform.io/cli/commands/init#backend-initialization)
 
 3. Do _terraform init_ validate configurations?
