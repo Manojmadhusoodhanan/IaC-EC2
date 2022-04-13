@@ -2,7 +2,7 @@
 **Authors: Sony K Sunny, Manoj Madhusoodhanan**
 ## terraform init
 Refer this [link](https://www.terraform.io/cli/commands/init)
-#### Additional use cases:
+#### Questionaire:
 1. How to skip input(yes/no) while run _terraform init_ at CI/CD pipeline?
 
     - Ans: terraform init -force-copy
@@ -22,6 +22,10 @@ It is using to validate syntatically configuration files already initialized. So
 
 Refer this [link](https://www.terraform.io/cli/commands/validate)
 
+#### Questionaire:
+1. What is difference between _terraform validate_ & _terraform init_ on validation process?
+    - _terraform init_ will validate both configuration and backend.
+    - _terraform validate_ will validate configuration files only if already exists.
 ## terraform plan
 
 ## terraform apply
