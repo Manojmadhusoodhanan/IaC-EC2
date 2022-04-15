@@ -29,6 +29,7 @@ resource "aws_instance" "app_server" {
   instance_type = "t2.micro"
   count = 1
   key_name = "sony_aws"
+  depends_on = [time_sleep.wait_3_minutes]
   
   provisioner "local-exec" {
     command = "echo ${self.private_ip} >> /tmp/private_ips.txt; ls -l /tmp/private_ips.txt"
