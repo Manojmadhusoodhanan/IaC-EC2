@@ -19,6 +19,11 @@ resource "aws_key_pair" "sony_aws" {
   key_name = "sony_aws"
 }
 
+resource "time_sleep" "wait_3_minutes" {
+  depends_on = [aws_key_pair.sony_aws]
+  create_duration = "3m"
+}
+
 resource "aws_instance" "app_server" {
   ami           = var.ami
   instance_type = "t2.micro"
