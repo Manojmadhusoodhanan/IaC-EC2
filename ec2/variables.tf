@@ -5,7 +5,7 @@ variable "region" {
 
 variable "ami" {
   type = string
-  default = "ami-06a0b4e3b7eb7a300"
+  default = "ami-0f68b4d014092659f"
 }
 
 variable "user" {
