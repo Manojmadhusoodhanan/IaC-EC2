@@ -10,5 +10,5 @@ variable "ami" {
 
 variable "user" {
   type = string
-  default = "centos"
+  default = "ec2-user"
 }
