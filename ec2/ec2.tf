@@ -37,7 +37,7 @@ resource "aws_security_group" "ssh-sg" {
 }
 
 resource "aws_instance" "app_server" {
-  ami           = var.ami
+  ami           = data.aws_ami.rhel.id
   instance_type = "t2.micro"
   count = 3
   key_name = "sony_aws"
