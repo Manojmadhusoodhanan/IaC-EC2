@@ -10,7 +10,7 @@ data "aws_ami" "rhel" {
     values = ["ebs"]
   }
   filter {
-    name = "virtulization-type"
+    name = "virtualization-type"
     values = ["hvm"]
   }
   filter {
