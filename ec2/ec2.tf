@@ -46,7 +46,7 @@ resource "aws_instance" "app_server" {
   ami           = var.ami
   instance_type = "t2.micro"
   count = 1
-  key_name = "sony_aws"
+  #key_name = "sony_aws"
   vpc_security_group_ids = [aws_security_group.ssh-sg.id]
   #depends_on = [time_sleep.wait_3_minutes]
   
