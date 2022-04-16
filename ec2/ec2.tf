@@ -24,11 +24,30 @@ provider "aws" {
 #  create_duration = "3m"
 #}
 
+resource "aws_security_group" "ssh-sg" {
+  name = "ssh-sg"
+  ingress {
+    from_port   = 0
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+
 resource "aws_instance" "app_server" {
   ami           = var.ami
   instance_type = "t2.micro"
   count = 1
   key_name = "sony_aws"
+  vpc_security_group_ids = [aws_security_group.ssh-sg.id]
   #depends_on = [time_sleep.wait_3_minutes]
   
   provisioner "local-exec" {
