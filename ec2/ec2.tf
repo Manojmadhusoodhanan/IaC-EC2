@@ -36,7 +36,6 @@ resource "aws_security_group" "ssh-sg" {
   }
 }
 
-
 resource "aws_instance" "app_server" {
   ami           = var.ami
   instance_type = "t2.micro"
