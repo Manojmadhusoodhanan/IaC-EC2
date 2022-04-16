@@ -23,11 +23,6 @@ variable "region" {
   default = "ap-south-1"
 }
 
-variable "ami" {
-  type = string
-  default = data.aws_ami.rhel.id
-}
-
 variable "user" {
   type = string
   default = "ec2-user"
