@@ -19,11 +19,6 @@ resource "aws_key_pair" "sony_aws" {
   key_name = "sony_aws"
 }
 
-#resource "time_sleep" "wait_3_minutes" {
-#  depends_on = [aws_key_pair.sony_aws]
-#  create_duration = "3m"
-#}
-
 resource "aws_security_group" "ssh-sg" {
   name = "ssh-sg"
   ingress {
@@ -48,7 +43,6 @@ resource "aws_instance" "app_server" {
   count = 1
   key_name = "sony_aws"
   vpc_security_group_ids = [aws_security_group.ssh-sg.id]
-  #depends_on = [time_sleep.wait_3_minutes]
   
   provisioner "local-exec" {
     command = "echo ${self.private_ip} >> /tmp/private_ips.txt; ls -l /tmp/private_ips.txt"
