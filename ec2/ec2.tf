@@ -61,6 +61,6 @@ resource "aws_instance" "app_server" {
   }
 
   tags = {
-    Name = "app_server-"[count.index]
+    Name = "app_server-[count.index]"
   }
 }
