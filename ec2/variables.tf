@@ -1,3 +1,23 @@
+data "aws_ami" "rhel" {
+  most_recent = true
+  owners = ["769417893008"]
+  filter {
+    name = "name"
+    values = ["redHat-*"]
+  }
+  filter {
+    name = "root-device-type"
+    values = ["ebs"]
+  }
+  filter {
+    name = "virtulization-type"
+    values = ["hvm"]
+  }
+  filter {
+    name = "architecture"
+    values = ["x86_64"]
+  }
+}
 variable "region" {
   type = string
   default = "ap-south-1"
@@ -5,7 +25,7 @@ variable "region" {
 
 variable "ami" {
   type = string
-  default = "ami-06a0b4e3b7eb7a300"
+  default = data.aws_ami.rhel.id
 }
 
 variable "user" {
